@@ -1,0 +1,59 @@
+:root {
+--primary-color: #BFD2BF;
+--lighter-secondary-color: #7BB2D9;
+--darker-secondary-color: #839D9A;
+--lighter-tertiary-color: #646F4B;
+--darker-tertiary-color: #46351D;
+}
+
+header {
+    border-bottom: 0.5rem outset var(--lighter-secondary-color);
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+#page-title {
+    align-self: center;
+}
+
+#userProfile {
+    margin: 0 2rem 0 1rem;
+}
+
+#workoutInput {
+    width:100%;
+}
+
+#header {
+    background-color: var(--lighter-secondary-color);
+}
+
+#header ul {
+    background-color: var(--lighter-secondary-color);
+}
+
+nav {
+    margin-right: 0.3rem;
+}
+
+#userProfile h2 {
+    border-bottom: 0.2rem solid var(--darker-secondary-color);
+}
+
+#userDetails {
+    padding-top:0.4rem;
+    padding-bottom:0.5rem;
+    background-color: var(--darker-secondary-color);
+    color: var(--darker-tertiary-color);
+    border-radius: 3%;
+}
+
+#userDetails h3 {
+    padding-top:0;
+    font-size: 2rem;
+    color: var(--darker-tertiary-color)
+}
+
+#userDetails textarea {
+    background-color: var(--primary-color);
+}

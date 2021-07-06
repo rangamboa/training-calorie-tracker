@@ -57,3 +57,14 @@ nav {
 #userDetails textarea {
     background-color: var(--primary-color);
 }
+
+.result {
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid black;
+}
+
+.item {
+    min-width: 200px;
+    margin: 20px auto;
+}

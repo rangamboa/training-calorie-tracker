@@ -1,6 +1,4 @@
 // Number of Recipes Capped at 20 for now, would only slow down page load if we increased this
-
-
 function randomFoodItemGen(caloriesMax, caloriesMin) {
   // Decaling placeholder arrays for later parsing
     let recipesMax = 20;
@@ -51,27 +49,28 @@ function randomFoodItemGen(caloriesMax, caloriesMin) {
     )
     .then((response) => response.json())
     .then((responseData) => {
-      // This loop for some reason only generates one item, so leaving as is cause we only want 1
-      // TODO: Eliminate for loop, still want random selection from food responses
-        for (let i = 0; i < responseData.hints.length; i++) {
-            let key = responseData.hints[i].food.label
-            let value = responseData.hints[i].food.nutrients.ENERC_KCAL
-            foodNameCalArr.push(key, value)
-        }
+      // Gens random index, creates variables for our final array
+      let randIndex = Math.floor(Math.random() * responseData.hints.length);
+      let key = responseData.hints[randIndex].food.label;
+      let value = responseData.hints[randIndex].food.nutrients.ENERC_KCAL;
+      let brand = responseData.hints[randIndex].food.brand;
+      let foodId = responseData.hints[randIndex].food.foodId;
+
+      foodNameCalArr.push(key, value, brand, foodId);
 
         // THIS IS DUMMY VARIABLE
         // THIS IS DUMMY VARIABLE
-        let numCals = 10000;
+        let numCals = 4300;
         // THIS IS DUMMY VARIABLE
         // THIS IS DUMMY VARIABLE
-        let numToConsume = Math.floor(numCals / foodNameCalArr[1]);
-        console.log(foodNameCalArr)
-        // Add to this to change formating for how content is written to page (Will move into a span eventually)
-        $("#itemEat").text("To fill that void you're probably feeling after such a strenous workout you should eat... " + numToConsume +" " + foodNameCalArr[0] + "'s");
-
+        let numToConsume = Math.ceil(numCals / foodNameCalArr[1]);
+        // Logging for readability, will show just name of food [0], number to eat [1], Brand (if defined)[2] and the food id[3]
+        console.log(foodNameCalArr);
+        // Add to this to change formating for how content is written to page (Will move into a span eventually) Add this line depending on whether it is defined ( + " from the brand " + foodNameCalArr[2] )
+        $("#itemEat").text("To fill that void you're probably feeling after such a strenous workout you should eat... " + numToConsume +" " + foodNameCalArr[0] + "'s" );
+        // Maybe want to add another fetch to do specific food item lookup from our new item of foodID
     })
-
-})
+  })
 }
 
-randomFoodItemGen(1000, 100);
+randomFoodItemGen(1000, 0);

@@ -47,24 +47,27 @@
                 <!-- User Input (right) -->
             <div id="userDetails" class="uk-card uk-card-hover uk-card-default uk-card-body uk-width-1-2@m uk-margin">
                 <h3 class="uk-card-title">User Details</h3>
-                <form action="">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor temporibus fugiat dolorum nostrum doloremque culpa iure dignissimos labore, qui nulla non, voluptates deleniti enim. Dicta eos earum ex laboriosam odit!</p>
-                    <textarea name="workout-regiment" id="workoutInput" cols="65" rows="10"></textarea>
+                <form action="search">
+                    <p>Please enter your exercise and the duration.<br />You can enter multiple workouts in the same entry.</p>
+                    <textarea name="workout-regiment" id="workoutInput" cols="65" rows="5"></textarea>
+                    <input type="submit" style="float:right;"></input>
                 </form>
             </div>
 
         </div>
             <!-- Workout Card from API -->
         <div id="trainerAPIcard" class="uk-card uk-card-hover uk-card-default uk-card-body uk-width-1-1@m uk-margin">
-            <h3 class="uk-card-title">Workout (From API)</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor temporibus fugiat dolorum nostrum doloremque culpa iure dignissimos labore, qui nulla non, voluptates deleniti enim. Dicta eos earum ex laboriosam odit!</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, accusantium. Vero hic ut cumque velit qui saepe et adipisci laborum, magnam est iste placeat ex tempore at, nisi ipsum illum?</p>
+            <h3 class="uk-card-title">💪 Workout Results 💪</h3>
+            <div class="result">
+                <div class="display:block;" id="exerciseDisplay"></div>
+                <div class="display:block;" id="totalDisplay"></div>
+            </div>
+                <p>Parsed information from user workout input is displayed above.</p>
         </div>
             <!-- Recipie Card from API -->
         <div id="recipeAPIcard" class="uk-card uk-card-hover uk-card-default uk-card-body uk-width-1-1@m uk-margin">
-            <h3 class="uk-card-title">Recipe Generator</h3>
-                <ol id="recipeList"></ol>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor temporibus fugiat dolorum nostrum doloremque culpa iure dignissimos labore, qui nulla non, voluptates deleniti enim. Dicta eos earum ex laboriosam odit! Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam animi, impedit earum eum eius fugiat iure? Quibusdam corporis consectetur deserunt quisquam ab tempore! Tenetur nesciunt repellat non impedit consequuntur? Eaque!</p>
+            <h3 class="uk-card-title">What to eat...</h3>
+                <p id="itemEat"></p>
         </div>
             <!-- Nutritional Details (If Applicable) -->
         <div id="nutritionAPIcard" class="uk-card uk-card-hover uk-card-default uk-card-body uk-width-1-1@m uk-margin">
@@ -79,23 +82,12 @@
         <!-- Footer for other nav details, API links? Etc? -->
     <footer>
 
-<!-- exercise search API function test-->
-
-<form action="search">
-    <label>Search</label>
-    <input type="text">
-    <input type="submit">
-  </form>
-  
-  <div class="result">
-    <h3>Result</h3>
-  </div>
-
     </footer>
     
 </body>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.0/dist/js/uikit.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.0/dist/js/uikit-icons.min.js"></script>
-    <script src="js/recipe-search.js"></script>
     <script src="js/exercise-search.js"></script>
+    <script src="js/recipe-search.js"></script>
+
 </html>

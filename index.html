@@ -31,7 +31,18 @@
             <div id="userProfile" class="uk-article uk-width-1-3@m">
                 <h2 class="uk-article-title">User Profile</h2>
                 <p>Please provide some demographic details so our workout planner can know you better!</p>
-                <p>If you would like to save this information please create a log-in!</p>
+                <!--Add a text field for input-->
+                <div id="bodyInfo">
+                    <textarea name="usersHeight" class="usersName" placeholder="Name"></textarea>
+                    <textarea name="usersHeight" class="usersAge" placeholder="Age"></textarea>
+                    <textarea name="usersHeight" class="usersHeight" placeholder="Your height"></textarea>
+                    <textarea name="usersWeight" class="usersWeight" placeholder="Your weight"></textarea>                    
+                </div>
+                <p>If you would like to save this information please click the save button! else click enter to see results</p>
+                
+                <button type="submit" id="enterBtn">Enter</button>
+                <button type="reset" id="restBtn">Clear</button>
+                <button type="submit" id="saveBtn">Save</button>
             </div>
                 <!-- User Input (right) -->
             <div id="userDetails" class="uk-card uk-card-hover uk-card-default uk-card-body uk-width-1-2@m uk-margin">

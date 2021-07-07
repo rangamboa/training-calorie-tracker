@@ -39,6 +39,12 @@ nav {
 #userProfile h2 {
     border-bottom: 0.2rem solid var(--darker-secondary-color);
 }
+#bodyInfo{
+    display: flex;
+    flex-direction: column;
+    width: 100px;
+    margin-top: 10px
+}
 
 #userDetails {
     padding-top:0.4rem;

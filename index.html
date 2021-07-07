@@ -35,11 +35,11 @@
             </div>
                 <!-- User Input (right) -->
             <div id="userDetails" class="uk-card uk-card-hover uk-card-default uk-card-body uk-width-1-2@m uk-margin">
-                <h3 class="uk-card-title">User Details</h3>
+                <h3 class="uk-card-title">Enter Your Workouts!</h3>
                 <form action="search">
-                    <p>Please enter your exercise and the duration.<br />You can enter multiple workouts in the same entry.</p>
+                    <p>Please type in your exercise and the duration.<br />(You can enter multiple workouts.)</p>
                     <textarea name="workout-regiment" id="workoutInput" cols="65" rows="5"></textarea>
-                    <input type="submit" style="float:right;"></input>
+                    <input type="submit" style="float:right;" value="click to submit"></input>
                 </form>
             </div>
 
@@ -48,7 +48,7 @@
         <div id="trainerAPIcard" class="uk-card uk-card-hover uk-card-default uk-card-body uk-width-1-1@m uk-margin">
             <h3 class="uk-card-title">💪 Workout Results 💪</h3>
             <div class="result">
-                <div class="display:block;" id="exerciseDisplay"></div>
+                <div class="display:block;"  style="margin-right: 25px;" id="exerciseDisplay"></div>
                 <div class="display:block;" id="totalDisplay"></div>
             </div>
                 <p>Parsed information from user workout input is displayed above.</p>

@@ -30,7 +30,7 @@
                 <!-- User Profile (left) -->
             <div id="userProfile" class="uk-article uk-width-1-3@m">
                 <h2 class="uk-article-title">1️⃣ User Profile</h2>
-                <p>Please provide some demographic details so our workout planner can know you better!</p>
+                <p>Please provide some demographic details so our workout planner can know you better!<br>*required field</p>
                 <!--Add a text field for input-->
 
                 <div id="bodyInfo">
@@ -38,7 +38,7 @@
                     <div id="onameAgebox">
 
                         <textarea id="name" name="usersHeight" class="usersName" placeholder="Name"></textarea>
-                        <input id="age" type="number" name="usersHeight" class="usersAge" placeholder="Age"></input>
+                        <input id="age" type="number" name="usersHeight" class="usersAge statsButton" placeholder="Age*"></input>
 
                     </div>
 
@@ -46,11 +46,11 @@
 
                         Height   
                         <div>
-                        <input type="number" name="usersHtft" class="usersHtft" placeholder="feet"></input>
-                        <input type="number" name="usersHtin" class="usersHtin" placeholder="inches"></input></div>
+                        <input type="number" name="usersHtft" class="usersHtft statsButton" placeholder="Feet*"></input>
+                        <input type="number" name="usersHtin" class="usersHtin statsButton" placeholder="Inches*"></input></div>
 
                         Weight
-                        <div><input type="number" name="usersWeight" class="usersWeight" placeholder="pounds"></input></div>
+                        <div><input type="number" name="usersWeight" class="usersWeight statsButton" placeholder="Pounds*"></input></div>
 
                     </div>                 
 
@@ -102,6 +102,5 @@
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.0/dist/js/uikit.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.0/dist/js/uikit-icons.min.js"></script>
     <script src="js/exercise-search.js"></script>
-    <script src="js/user-search.js"></script>
 
 </html>

@@ -64,6 +64,10 @@ nav {
     background-color: var(--primary-color);
 }
 
+#trainerAPIcard {
+    margin: 0 auto 0 auto;
+}
+
 .result {
     display: flex;
     flex-wrap: wrap;
@@ -100,4 +104,13 @@ nav {
 #heightWeightbox input {
     width:100%;
     margin:auto;
+}
+
+#recipeAPIcard {
+    opacity: 0;
+    transition: opacity 700ms ease;
+}
+
+.active {
+    opacity: 1 !important;
 }

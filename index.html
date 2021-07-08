@@ -31,18 +31,25 @@
                         <textarea id="name" name="usersHeight" class="usersName" placeholder="Name"></textarea>
                         <input id="age" type="number" name="usersHeight" class="usersAge statsButton" placeholder="Age*"></input>
 
+                        <label for="gender">Gender:</label>
+                        <select id="gender" name="gender">
+                            <option value="none"></option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+
                     </div>
 
                     <div id="heightWeightbox">
 
-                        <label for="feet">Height</label>   
-                        <br>
-                        <div class= "uk-flex">
-                        <input id="feet" type="number" name="usersHtft" class="usersHtft statsButton" placeholder="Feet*"></input>
+                        Height:
+                        <div>
+                        <input type="number" name="usersHtft" class="usersHtft statsButton" placeholder="Feet*"></input>
                         <input type="number" name="usersHtin" class="usersHtin statsButton" placeholder="Inches*"></input></div>
 
-                        <label for="usersWeight">Weight</label>
-                        <input type="number" name="usersWeight" class="usersWeight statsButton" placeholder="Pounds*"></input>
+                        Weight:
+                        <div><input type="number" name="usersWeight" class="usersWeight statsButton" placeholder="Pounds*"></input></div>
 
                     </div>                 
 
@@ -76,8 +83,8 @@
                 <p>You'll see your stats here in a few...</p>
         </div>
             <!-- Recipie Card from API -->
-        <div id="recipeAPIcard" class="uk-card uk-card-hover uk-card-default uk-card-body uk-width-1-2@m uk-margin">
-            <h3 class="uk-card-title">What to eat...</h3>
+        <div hidden id="recipeAPIcard" class="uk-card uk-card-hover uk-card-default uk-card-body uk-width-1-2@m uk-margin">
+            <h3 class="uk-card-title">4️⃣ What to eat...</h3>
                 <p id="itemEat"></p>
                 <a id="itemLink" href=""></a>
         </div>

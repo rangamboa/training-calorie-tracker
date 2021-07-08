@@ -11,6 +11,7 @@ var statsEl = $('.statsButton');
 var okay = 1;
 var calcHeight;
 var calcWeight;
+var genderItem = $('#gender');
 
 var apiKey = "7d64f63f6bcf8a707e9c268f5f94f438";
 var apiId = "f11e9b5e";
@@ -45,9 +46,22 @@ form.on('submit', function(event) {
 function makeRequest(queryItem) {
 
   // This needs to be further modified with user information (height, weight, age)
-  requestUrl = url + '&gender=female&age=35';
+
+  console.log(genderItem[0].value);
+
+  if (genderItem[0].value === 'none' || genderItem[0].value === 'other') {
+    gender = '';
+  } else gender = ((genderItem[0].value).toString()).toLowerCase();
+
+  console.log(gender);
+  console.log('age: '+ageItem[0].value);
+  console.log('height: '+calcHeight);
+  console.log('weight: '+calcWeight);
+
+
+  requestUrl = url + '&gender=' + gender + '&age=' + ageItem[0].value + '&height_cm=' + calcHeight + '&weight_kg=' + calcWeight;
   
-  // console.log(requestUrl);
+  console.log(requestUrl);
   // console.log(queryItem);
 
   fetch(requestUrl, {
@@ -186,27 +200,31 @@ function createUser() {
     const user = localStorage.setItem(nameItem, ageItem, heightItem, weightItem);
 }
 
+saveButton.on('click', function() {
+
+  document.getElementsByName(user).values();
+
+  if(user < 1 ){
+      console.log("No users found");
+  } else {
+      for(var i = 0; i< localStorage.length; i++);
+  }
+});
+
 // This function clears the pink background if there is an input error in the User Profile section.
 statsEl.on('click', function(event) {
     event.preventDefault();
     event.target.style = 'background-color: white';
 });
 
-saveButton.on('click', function() {
-
-    document.getElementsByName(user).values();
-
-    if(user < 1 ){
-        console.log("No users found");
-    } else {
-        for(var i = 0; i< localStorage.length; i++);
-    }
-});
-
+// This checks for valid input values in the user profile section, then converts to metric to be used by the API query.
 enterButton.on('click', function(event) {
 
+    okay = 1;
     event.preventDefault();
     console.log('User Info should have been entered at this point.\nNeed to check for validity.');
+
+    console.log(genderItem[0].value);
 
     // Check for valid input values.
 
@@ -220,21 +238,25 @@ enterButton.on('click', function(event) {
         alert('Please enter a valid height in feet.');
         htFtItem[0].value = '';
         htFtItem[0].style = 'background-color: pink;';
+        okay = 0;
     }
     if (htInItem[0].value < 0 || htInItem[0].value > 12) {
         alert('Please enter a valid height in inches.');
         htInItem[0].value = '';
         htInItem[0].style = 'background-color: pink;';
-    }
+        okay = 0;    
+    } else htInItem[0].value = 0;
     if (weightItem[0].value <= 0) {
         alert('Please enter a valid weight in pounds.');
         weightItem[0].value = '';
         weightItem[0].style = 'background-color: pink;';
+        okay = 0;
     }
 
     // If all inputs are valid, proceed.
     if (okay == 1) {
 
+        console.log('looks good, converting stats to metric.');
         // Convert height in feet/inches to centimeters to satisfy API query parameter requirement.
 
         // First, convert to height in inches.
@@ -248,5 +270,9 @@ enterButton.on('click', function(event) {
         // Convert weight in pounds to kilograms to satisfy API query parameter requirement.
         calcWeight = Math.floor(parseInt(weightItem[0].value)/2.205);
         console.log(calcWeight);
+
+
+
     }
+    else { console.log('sometehing is off.'); return; }
 });

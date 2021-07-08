@@ -6,13 +6,15 @@ var htFtItem = $('.usersHtft');
 var htInItem = $('.usersHtin');
 var weightItem = $('.usersWeight');
 var saveButton = $('#saveBtn');
+var retrieveButton = $('#retrieveBtn');
 var enterButton = $('#enterBtn');
 var statsEl = $('.statsButton');
 var okay = 1;
 var calcHeight;
 var calcWeight;
 var genderItem = $('#gender');
-  // API Variables
+
+// API Variables
 var apiKey = "7d64f63f6bcf8a707e9c268f5f94f438";
 var apiId = "f11e9b5e";
 var url = 'https://trackapi.nutritionix.com/v2/natural/exercise?query=';
@@ -20,6 +22,7 @@ var queryItem;
 var workouts = [];
 var numWorkouts = 0;
 var numCals = 0;
+
   // Input Variables
 var form = $('form');
 var input = $('#workoutInput');
@@ -87,7 +90,8 @@ function makeRequest(queryItem) {
       totalDisp.append('🔥 Total Calories Burned: '+ numCals);
   }
   // Keep track of numCals (total calories burned).
-  console.log(numCals);
+  console.log('Total calories burned: '+ numCals);
+
   // Pass numCals to another function WITHIN this fetch request.
   randomFoodItemGen(numCals, 0);
   });
@@ -160,22 +164,6 @@ function randomFoodItemGen(caloriesMax, caloriesMin) {
       $("#itemLink").text("Click here to go to the recipe page!");
   })
 }
-
-function createUser() {
-    const user = localStorage.setItem(nameItem, ageItem, heightItem, weightItem);
-}
-
-saveButton.on('click', function() {
-
-  document.getElementsByName(user).values();
-
-  if(user < 1 ){
-      console.log("No users found");
-  } else {
-      for(var i = 0; i< localStorage.length; i++);
-  }
-
-});
 
 // These functions clear the pink background if there is an input error in the User Profile section.
 statsEl.on('click', function(event) {
@@ -251,12 +239,7 @@ enterButton.on('click', function(event) {
         // Convert weight in pounds to kilograms to satisfy API query parameter requirement.
         calcWeight = Math.floor(parseInt(weightItem[0].value)/2.205);
         console.log(calcWeight + ' weight in kilograms');
-
-        // Save user info  
-        // storeData();
-
-
-    }
+   }
     else { console.log('A field in the user data is invalid.'); return; }
 });
 
@@ -267,6 +250,37 @@ newRecipeBtn.on('click', function() {
   randomFoodItemGen(numCals, 0);
 })
 
-function storeData() {
-  
-}
+// Saves user info to local storage on button click.
+saveButton.on('click', function(event) {
+
+  event.preventDefault();
+  localStorage.setItem('saveName', JSON.stringify(nameItem[0].value));
+  localStorage.setItem('saveAge', JSON.stringify(ageItem[0].value));
+  localStorage.setItem('saveGen', JSON.stringify(genderItem[0].value));
+  localStorage.setItem('saveFt', JSON.stringify(htFtItem[0].value));
+  localStorage.setItem('saveIn', JSON.stringify(htInItem[0].value));
+  localStorage.setItem('saveWt', JSON.stringify(weightItem[0].value));
+
+});
+
+
+retrieveButton.on('click', function(event) {
+
+  event.preventDefault();
+
+  nameItem[0].value = JSON.parse(localStorage.getItem('saveName'));
+  ageItem[0].value = JSON.parse(localStorage.getItem('saveAge'));
+  genderItem[0].value = JSON.parse(localStorage.getItem('saveGen'));
+  htFtItem[0].value = JSON.parse(localStorage.getItem('saveFt'));
+  htInItem[0].value = JSON.parse(localStorage.getItem('saveIn'));
+  weightItem[0].value = JSON.parse(localStorage.getItem('saveWt'));
+
+});
+
+
+// if(user < 1 ){
+//     console.log("No users found");
+// } else {
+//     for(var i = 0; i< localStorage.length; i++);
+// }
+

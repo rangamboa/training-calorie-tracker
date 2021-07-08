@@ -271,6 +271,8 @@ enterButton.on('click', function(event) {
         calcWeight = Math.floor(parseInt(weightItem[0].value)/2.205);
         console.log(calcWeight);
 
+        // Save user info  
+
 
 
     }

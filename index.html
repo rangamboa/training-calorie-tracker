@@ -26,17 +26,21 @@
         <!-- Box for main content -->
     <div class="uk-flex uk-flex-column uk-flex-middle">
             <!-- Box for User Profile and Input Field -->
-        <div id="userProfileDiv" class="uk-flex">
+        <div id="userProfileDiv" class="uk-flex uk-flex-around">
                 <!-- User Profile (left) -->
             <div id="userProfile" class="uk-article uk-width-1-3@m">
                 <h2 class="uk-article-title">User Profile</h2>
                 <p>Please provide some demographic details so our workout planner can know you better!</p>
                 <!--Add a text field for input-->
                 <div id="bodyInfo">
-                    <textarea name="usersHeight" class="usersName" placeholder="Name"></textarea>
-                    <textarea name="usersHeight" class="usersAge" placeholder="Age"></textarea>
-                    <textarea name="usersHeight" class="usersHeight" placeholder="Your height"></textarea>
-                    <textarea name="usersWeight" class="usersWeight" placeholder="Your weight"></textarea>                    
+                    <div id="nameAgebox">
+                        <textarea id="name" name="usersHeight" class="usersName" placeholder="Name"></textarea>
+                        <input id="age" type="number" name="usersHeight" class="usersAge" placeholder="Age"></input>
+                    </div>
+                    <div id="heightWeightbox">
+                        <input type="number" name="usersHeight" class="usersHeight" placeholder="Your height"></input>
+                        <input type="number" name="usersWeight" class="usersWeight" placeholder="Your weight"></input>
+                    </div>                    
                 </div>
                 <p>If you would like to save this information please click the save button! else click enter to see results</p>
                 
@@ -62,17 +66,12 @@
                 <div class="display:block;"  style="margin-right: 25px;" id="exerciseDisplay"></div>
                 <div class="display:block;" id="totalDisplay"></div>
             </div>
-                <p>Parsed information from user workout input is displayed above.</p>
+                <p>You'll see your stats here in a few...</p>
         </div>
             <!-- Recipie Card from API -->
-        <div id="recipeAPIcard" class="uk-card uk-card-hover uk-card-default uk-card-body uk-width-1-1@m uk-margin">
+        <div hidden id="recipeAPIcard" class="uk-card uk-card-hover uk-card-default uk-card-body uk-width-1-2@m uk-margin">
             <h3 class="uk-card-title">What to eat...</h3>
                 <p id="itemEat"></p>
-        </div>
-            <!-- Nutritional Details (If Applicable) -->
-        <div id="nutritionAPIcard" class="uk-card uk-card-hover uk-card-default uk-card-body uk-width-1-1@m uk-margin">
-            <h3 class="uk-card-title">Nutrition Details</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor temporibus fugiat dolorum nostrum doloremque culpa iure dignissimos labore, qui nulla non, voluptates deleniti enim. Dicta eos earum ex laboriosam odit!</p>
         </div>
 
     </div>

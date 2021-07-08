@@ -44,6 +44,15 @@ form.on('submit', function(event) {
 function makeRequest(queryItem) {
 
   // This needs to be further modified with user information (height, weight, age)
+
+  if (gender == 'none' || gender == 'other') 
+
+  var gender = ":"female",
+  var weight_kg = ":72.5,
+  var height_cm = ":167.64,
+  var age = ":30
+
+
   requestUrl = url + '&gender=female&age=35';
   
   // console.log(requestUrl);
@@ -181,27 +190,31 @@ function createUser() {
     const user = localStorage.setItem(nameItem, ageItem, heightItem, weightItem);
 }
 
+saveButton.on('click', function() {
+
+  document.getElementsByName(user).values();
+
+  if(user < 1 ){
+      console.log("No users found");
+  } else {
+      for(var i = 0; i< localStorage.length; i++);
+  }
+});
+
 // This function clears the pink background if there is an input error in the User Profile section.
 statsEl.on('click', function(event) {
     event.preventDefault();
     event.target.style = 'background-color: white';
 });
 
-saveButton.on('click', function() {
-
-    document.getElementsByName(user).values();
-
-    if(user < 1 ){
-        console.log("No users found");
-    } else {
-        for(var i = 0; i< localStorage.length; i++);
-    }
-});
-
+// This checks for valid input values in the user profile section, then converts to metric to be used by the API query.
 enterButton.on('click', function(event) {
 
+    okay = 1;
     event.preventDefault();
     console.log('User Info should have been entered at this point.\nNeed to check for validity.');
+
+    console.log(gender.value);
 
     // Check for valid input values.
 
@@ -215,21 +228,25 @@ enterButton.on('click', function(event) {
         alert('Please enter a valid height in feet.');
         htFtItem[0].value = '';
         htFtItem[0].style = 'background-color: pink;';
+        okay = 0;
     }
     if (htInItem[0].value < 0 || htInItem[0].value > 12) {
         alert('Please enter a valid height in inches.');
         htInItem[0].value = '';
         htInItem[0].style = 'background-color: pink;';
-    }
+        okay = 0;    
+    } else htInItem[0].value = 0;
     if (weightItem[0].value <= 0) {
         alert('Please enter a valid weight in pounds.');
         weightItem[0].value = '';
         weightItem[0].style = 'background-color: pink;';
+        okay = 0;
     }
 
     // If all inputs are valid, proceed.
     if (okay == 1) {
 
+        console.log('looks good, converting stats to metric.');
         // Convert height in feet/inches to centimeters to satisfy API query parameter requirement.
 
         // First, convert to height in inches.
@@ -243,5 +260,9 @@ enterButton.on('click', function(event) {
         // Convert weight in pounds to kilograms to satisfy API query parameter requirement.
         calcWeight = Math.floor(parseInt(weightItem[0].value)/2.205);
         console.log(calcWeight);
+
+
+
     }
+    else { console.log('sometehing is off.'); return; }
 });

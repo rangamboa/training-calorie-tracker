@@ -44,7 +44,9 @@ nav {
 #bodyInfo{
     display: flex;
     flex-direction: column;
-    margin-top: 10px
+    padding: 1em 1em 1em 1em;
+    margin-top: 10px;
+    box-shadow: 2px 8px 15px 0px rgba(0,0,0,0.46);
 }
 
 #userDetails {
@@ -82,15 +84,20 @@ nav {
 }
 
 #age {
-    width:15%;
+    width:25%;
 }
 
 
 #nameAgebox {
     display:flex;
+    flex-direction: column;
     margin-left:8%;
     width:75%;
-    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+#genderBox {
+    margin-left:20%;
 }
 
 #heightWeightbox {

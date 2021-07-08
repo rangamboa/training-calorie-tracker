@@ -175,16 +175,11 @@ function randomFoodItemGen(caloriesMax, caloriesMin) {
       let rand = choices[Math.floor(Math.random() * choices.length)];
       let numToConsume = Math.floor(caloriesMax / Math.floor(recipeCalArr[rand+2]))
 
-      console.log(rand)
-      console.log(recipeCalArr[rand].split('Recipe'));
-      console.log(recipeCalArr[rand+1]);
-      console.log(recipeCalArr[rand+2]);
-
       let plural
       if (numToConsume > 1)  plural = 's.'
       else plural = '.';
 
-      let noRec = recipeCalArr[rand].replace('Recipe' || 'Recipes',"")
+      let noRec = recipeCalArr[rand].replace('Recipe' || 'Recipes' || 'recipe' || 'recipes',"")
       console.log(noRec)
 
 
@@ -234,18 +229,29 @@ enterButton.on('click', function(event) {
         ageItem[0].style = 'background-color: pink;';
         okay = 0;
     }
+
     if (htFtItem[0].value <= 0) {
         alert('Please enter a valid height in feet.');
         htFtItem[0].value = '';
         htFtItem[0].style = 'background-color: pink;';
         okay = 0;
     }
+<<<<<<< HEAD
     if (htInItem[0].value < 0 || htInItem[0].value > 11) {
+=======
+
+  
+    if (htInItem[0].value < 0 || htInItem[0].value > 12) {
+>>>>>>> develop
         alert('Please enter a valid height in inches.');
         htInItem[0].value = '';
         htInItem[0].style = 'background-color: pink;';
         okay = 0;    
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> develop
     if (weightItem[0].value <= 0) {
         alert('Please enter a valid weight in pounds.');
         weightItem[0].value = '';
@@ -278,3 +284,9 @@ enterButton.on('click', function(event) {
     }
     else { console.log('sometehing is off.'); return; }
 });
+// Pulls new random recipe
+let newRecipeBtn = $("#newRecipe")
+newRecipeBtn.on('click', function() {
+  $("#recipeAPIcard").removeClass('active');
+  randomFoodItemGen(numCals, 0);
+})

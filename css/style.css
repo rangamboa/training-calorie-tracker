@@ -33,30 +33,43 @@ header {
     background-color: var(--lighter-secondary-color);
 }
 
-nav {
-    margin-right: 0.3rem;
+#workouts {
+    padding-bottom: 0.3rem;
+    border-bottom: 0.2rem solid var(--darker-tertiary-color)
 }
 
 #userProfile h2 {
+    padding-bottom: 0.6rem;
     border-bottom: 0.2rem solid var(--darker-secondary-color);
 }
+
 #bodyInfo{
     display: flex;
     flex-direction: column;
-    width: 100px;
-    margin-top: 10px
+    padding: 1em 1em 1em 1em;
+    margin-top: 10px;
+    box-shadow: 2px 8px 15px 0px rgba(0,0,0,0.46);
 }
 
 #userDetails {
-    padding-top:0.4rem;
+    padding-top:0.6rem;
     padding-bottom:0.5rem;
     background-color: var(--darker-secondary-color);
     color: var(--darker-tertiary-color);
     border-radius: 3%;
 }
 
+#exerciseDuration {
+    margin-bottom: 2rem !important;
+}
+
+#multiple {
+    font-size: 0.8rem;
+    margin-top: 0;
+}
+
 #userDetails h3 {
-    padding-top:0;
+    padding-top:1.5rem;
     font-size: 2rem;
     color: var(--darker-tertiary-color)
 }
@@ -64,6 +77,7 @@ nav {
 #userDetails textarea {
     background-color: var(--primary-color);
 }
+
 
 .result {
     display: flex;
@@ -75,37 +89,65 @@ nav {
     min-width: 200px;
     margin: 20px auto;
 }
-/* Adding background images*/
 
-.body{
-    width: 100%;
-    height: 100vh;
-    background-position: center center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    backface-visibility: hidden;
-    animation: slideBg 30s linear infinite 0s;
-    animation-timing-function: ease-in-out;
-    background-image: url('../image/crossfit.PNG');
-    
+#name {
+    width: 85%;
 }
 
-@keyframes slideBg {
-    0%{
-        background-image: url('../image/calories.PNG');
-    }
-    25%{
-        background-image: url('../image/calories1.PNG');
-    }
-    50%{
-        background-image: url('../image/calories2.PNG');
-    }
-    75%{
-        background-image: url('../image/treadmil.PNG');
-    }
-    100%{
-        background-image: url('../image/Capture4.PNG');
-    }
-   
+#age {
+    width:25%;
+}
+
+
+#nameAgebox {
+    display:flex;
+    flex-direction: column;
+    margin-left:8%;
+    width:75%;
+    margin-top: 1rem;
+}
+
+#genderBox {
+    margin-left:20%;
+}
+
+#heightWeightbox {
+    width:55%;
+    margin-left:15%;
+}
+
+#heightWeightbox input {
     
+    width:100%;
+    margin:auto;
+}
+
+#userProfileAfter {
+    margin-bottom: 1em;
+}
+
+#userProfileAfter::after {
+    content: '* required field';
+    position: relative;
+    top: 1em;
+    font-size: 0.8em;
+    opacity: 0.8;
+}
+
+#btnBox {
+    margin-left:20%;
+}
+
+#recipeAPIcard {
+    opacity: 0;
+    transition: opacity 700ms ease;
+}
+
+#trainerAPIcard {
+    opacity: 0;
+    transition: opacity 700ms ease;
+}
+
+.active {
+    opacity: 1 !important;
 }

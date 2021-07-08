@@ -7,90 +7,101 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.7.0/dist/css/uikit.min.css" />
     <link rel="stylesheet" href="./css/style.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <title>Nutritional Assistant</title>
+    <title>Calorie Replacer</title>
 </head>
 <body class="body">
         <!-- Header and Navbar div -->
     <header id="header" class="uk-flex uk-flex-between">
-        <h1 id="page-title" class="uk-heading-large">Nutritional Assistant</h1>
-        <nav class="uk-navbar uk-navbar-container uk-margin">
-            <div class="uk-navbar-right">
-                <ul class="uk-nav uk-nav-default">
-                    <li class="uk-active"><a href="">Workout</a></li>
-                    <li class="uk-active"><a href="">Recipe</a></li>
-                    <li class="uk-active"><a href="">Nutrition</a></li>
-                </ul>
-            </div>
-        </nav>
+        <h1 id="page-title" class="uk-heading-large">Calorie Replacer</h1>
     </header>
    
         <!-- Box for main content -->
     <div class="uk-flex uk-flex-column uk-flex-middle">
             <!-- Box for User Profile and Input Field -->
-        <div id="userProfileDiv" class="uk-flex">
+        <div id="userProfileDiv" class="uk-flex uk-flex-around">
                 <!-- User Profile (left) -->
             <div id="userProfile" class="uk-article uk-width-1-3@m">
-                <h2 class="uk-article-title">User Profile</h2>
-                <p>Please provide some demographic details so our workout planner can know you better!</p>
+                <h2 class="uk-article-title">1️⃣ User Profile</h2>
+                    <p id="userProfileAfter">Please provide some demographic details so our workout planner can know you better!</p>
                 <!--Add a text field for input-->
+
                 <div id="bodyInfo">
-                    <textarea name="usersHeight" class="usersName" placeholder="Name"></textarea>
-                    <textarea name="usersHeight" class="usersAge" placeholder="Age"></textarea>
-                    <textarea name="usersHeight" class="usersHeight" placeholder="Your height"></textarea>
-                    <textarea name="usersWeight" class="usersWeight" placeholder="Your weight"></textarea>                    
+
+                    <div id="nameAgebox">
+                        <label for="usersHeight">Name and Age:</label>
+                        <div id="nameDiv" class="uk-flex">
+                        <textarea id="name" name="usersHeight" class="usersName" placeholder="Name*" rows="1"></textarea>
+                        <input id="age" type="number" name="usersHeight" class="usersAge statsButton" placeholder="Age*"></input>
+                        </div>
+                        <div id="genderBox">
+                        <label for="gender">Gender:</label>
+                        <select id="gender" name="gender">
+                            <option value="none"></option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                        </div>
+                    </div>
+
+                    <div id="heightWeightbox">
+                        Height:
+                        <div>
+                            <input type="number" name="usersHtft" class="usersHtft statsButton" placeholder="Feet*"></input>
+                            <input type="number" name="usersHtin" class="usersHtin statsButton" placeholder="Inches*"></input>
+                        </div>
+                        Weight:
+                        <div>
+                            <input type="number" name="usersWeight" class="usersWeight statsButton" placeholder="Pounds*"></input>
+                        </div>
+                    </div>                 
+
                 </div>
-                <p>If you would like to save this information please click the save button! else click enter to see results</p>
+                <p>Click "Save" to store your info, "Clear" to reset info,<br/> or "Enter" to confirm.</p>
                 
-                <button type="submit" id="enterBtn">Enter</button>
-                <button type="reset" id="restBtn">Clear</button>
+                <div id="btnBox" class="uk-flex uk-flex-around uk-width-1-2">
                 <button type="submit" id="saveBtn">Save</button>
+                <button type="reset" id="resetBtn">Clear</button>
+                <button type="submit" id="enterBtn">Enter</button>
+                </div>
             </div>
                 <!-- User Input (right) -->
             <div id="userDetails" class="uk-card uk-card-hover uk-card-default uk-card-body uk-width-1-2@m uk-margin">
-                <h3 class="uk-card-title">User Details</h3>
+                <h3 id="workouts" class="uk-card-title">2️⃣ Enter Your Workouts!</h3>
+                <p id="exerciseDuration">Please type in your exercise and the duration.
+                    <br>(You can enter multiple workouts.)</p>
                 <form action="search">
-                    <p>Please enter your exercise and the duration.<br />You can enter multiple workouts in the same entry.</p>
-                    <textarea name="workout-regiment" id="workoutInput" cols="65" rows="5"></textarea>
-                    <input type="submit" style="float:right;"></input>
+                    <textarea name="workout-regiment" id="workoutInput" cols="65" rows="10"></textarea>
+                    <input type="submit" style="float:right;" value="Click to Submit"></input>
                 </form>
             </div>
 
         </div>
             <!-- Workout Card from API -->
-        <div id="trainerAPIcard" class="uk-card uk-card-hover uk-card-default uk-card-body uk-width-1-1@m uk-margin">
-            <h3 class="uk-card-title">💪 Workout Results 💪</h3>
+        <div id="trainerAPIcard" class="uk-card uk-card-default uk-card-body uk-width-1-1@m uk-margin">
+            <h3 class="uk-card-title">3️⃣ Workout Results 💪</h3>
             <div class="result">
-                <div class="display:block;" id="exerciseDisplay"></div>
+                <div class="display:block;"  style="margin-right: 25px;" id="exerciseDisplay"></div>
                 <div class="display:block;" id="totalDisplay"></div>
             </div>
-                <p>Parsed information from user workout input is displayed above.</p>
+                <p>You'll see your stats here in a few...</p>
         </div>
             <!-- Recipie Card from API -->
-        <div id="recipeAPIcard" class="uk-card uk-card-hover uk-card-default uk-card-body uk-width-1-1@m uk-margin">
-            <h3 class="uk-card-title">What to eat...</h3>
+        <div id="recipeAPIcard" class="uk-card uk-card-hover uk-card-default uk-card-body uk-width-1-2@m uk-margin">
+            <h3 class="uk-card-title">4️⃣ What to eat...</h3>
                 <p id="itemEat"></p>
+                <div class="uk-flex uk-flex-around">
+                    <a id="itemLink" href=""></a>
+                    <button id="newRecipe" type="button">Want a different recipe?</button>
+                </div>
         </div>
-            <!-- Nutritional Details (If Applicable) -->
-        <div id="nutritionAPIcard" class="uk-card uk-card-hover uk-card-default uk-card-body uk-width-1-1@m uk-margin">
-            <h3 class="uk-card-title">Nutrition Details</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor temporibus fugiat dolorum nostrum doloremque culpa iure dignissimos labore, qui nulla non, voluptates deleniti enim. Dicta eos earum ex laboriosam odit!</p>
-        </div>
-
     </div>
-    <!-- Placeholder Divs for future format edits, added features -->
-     <!--Background slider div-->
-     <div class="slide_backGrd"></div>
-        <!-- Aside for login sidebar if we go that route -->
-    <aside></aside>
-        <!-- Footer for other nav details, API links? Etc? -->
     <footer>
-
+        <!-- Credit ourselves, maybe API links -->
     </footer>
-    
 </body>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.0/dist/js/uikit.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.0/dist/js/uikit-icons.min.js"></script>
     <script src="js/exercise-search.js"></script>
-    <script src="js/recipe-search.js"></script>
 
 </html>

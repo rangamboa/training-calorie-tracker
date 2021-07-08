@@ -32,8 +32,9 @@ header {
     background-color: var(--lighter-secondary-color);
 }
 
-nav {
-    margin-right: 0.3rem;
+#workouts {
+    padding-bottom: 0.3rem;
+    border-bottom: 0.2rem solid var(--darker-tertiary-color)
 }
 
 #userProfile h2 {
@@ -50,11 +51,20 @@ nav {
 }
 
 #userDetails {
-    padding-top:0.4rem;
+    padding-top:0.6rem;
     padding-bottom:0.5rem;
     background-color: var(--darker-secondary-color);
     color: var(--darker-tertiary-color);
     border-radius: 3%;
+}
+
+#exerciseDuration {
+    margin-bottom: 2rem !important;
+}
+
+#multiple {
+    font-size: 0.8rem;
+    margin-top: 0;
 }
 
 #userDetails h3 {
@@ -128,6 +138,11 @@ nav {
 }
 
 #recipeAPIcard {
+    opacity: 0;
+    transition: opacity 700ms ease;
+}
+
+#trainerAPIcard {
     opacity: 0;
     transition: opacity 700ms ease;
 }

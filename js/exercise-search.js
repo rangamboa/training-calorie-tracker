@@ -1,5 +1,5 @@
 // Declare variables.
-
+  // User Variables
 var nameItem = $('.usersName');
 var ageItem = $('.usersAge');
 var htFtItem = $('.usersHtft');
@@ -12,7 +12,7 @@ var okay = 1;
 var calcHeight;
 var calcWeight;
 var genderItem = $('#gender');
-
+  // API Variables
 var apiKey = "7d64f63f6bcf8a707e9c268f5f94f438";
 var apiId = "f11e9b5e";
 var url = 'https://trackapi.nutritionix.com/v2/natural/exercise?query=';
@@ -20,13 +20,13 @@ var queryItem;
 var workouts = [];
 var numWorkouts = 0;
 var numCals = 0;
-
+  // Input Variables
 var form = $('form');
 var input = $('#workoutInput');
 var workoutDisp = $('#exerciseDisplay');
 var totalDisp = $('#totalDisplay');
 
-// Capture workout information from form.
+// Capture workout information from form
 form.on('submit', function(event) {
 
   event.preventDefault();
@@ -40,29 +40,23 @@ form.on('submit', function(event) {
 
   // Clear value of input box.
   input.val('');
-
+  $("#trainerAPIcard").addClass('active');
 });
 
+// Sends workout query to API
 function makeRequest(queryItem) {
-
-  // This needs to be further modified with user information (height, weight, age)
-
-  console.log(genderItem[0].value);
 
   if (genderItem[0].value === 'none' || genderItem[0].value === 'other') {
     gender = '';
   } else gender = ((genderItem[0].value).toString()).toLowerCase();
 
-  console.log(gender);
-  console.log('age: '+ageItem[0].value);
-  console.log('height: '+calcHeight);
-  console.log('weight: '+calcWeight);
-
+// USER DEMO LOG TOGGLE
+  // console.log(gender);
+  // console.log('age: '+ageItem[0].value);
+  // console.log('height: '+calcHeight);
+  // console.log('weight: '+calcWeight);
 
   requestUrl = url + '&gender=' + gender + '&age=' + ageItem[0].value + '&height_cm=' + calcHeight + '&weight_kg=' + calcWeight;
-  
-  console.log(requestUrl);
-  // console.log(queryItem);
 
   fetch(requestUrl, {
     method: 'POST',
@@ -74,54 +68,32 @@ function makeRequest(queryItem) {
       'Content-Type': 'application/json',
     }
   })
-
   .then(response => response.json())
   .then(data => { 
-
     // Assigns pulled data to "workouts" to be parsed and used.
     workouts = data;
-
-    // Console logging for tracking and checking variables.
-
-    // console.log(workouts);
-    // console.log('types of workouts: '+ workouts.exercises.length);
-
-    // for (i=0; i< workouts.exercises.length; i++) {
-    //   console.log('----------');
-    //   console.log((i+1) + ') ' + workouts.exercises[i].name);
-    //   console.log('length of workout (min): ' + workouts.exercises[i].duration_min);
-    //   console.log('calories burned (cal): ' + workouts.exercises[i].nf_calories);
-    // }
-
     // Loop through number of workouts.
     for (i=0; i< workouts.exercises.length; i++) {
-
       // Increase workout total for (display purposes only).
       numWorkouts++;
-
       // Update workout list display.
       workoutDisp.append('✅ Workout #' + numWorkouts + ', ' + workouts.exercises[i].name + ' for ' + + workouts.exercises[i].duration_min + ' minutes, burns ' + Math.floor(workouts.exercises[i].nf_calories) +' calories.<br />');
-
       // Round calories down for readability.
       numCals+=Math.floor(workouts.exercises[i].nf_calories);
-
       // Update running display of total workouts and total calories burned.
       totalDisp.empty();
       totalDisp.append('💪 Total Workouts: '+ numWorkouts);
       totalDisp.append('<br />');
       totalDisp.append('🔥 Total Calories Burned: '+ numCals);
   }
-
   // Keep track of numCals (total calories burned).
   console.log(numCals);
-
   // Pass numCals to another function WITHIN this fetch request.
   randomFoodItemGen(numCals, 0);
   });
-
 }
 
-// Number of Recipes Capped at 20 for now, would only slow down page load if we increased this
+// Generates recipes from second API based on request info
 function randomFoodItemGen(caloriesMax, caloriesMin) {
   // Decaling placeholder arrays for later parsing
     let recipesMax = 20;
@@ -148,7 +120,7 @@ function randomFoodItemGen(caloriesMax, caloriesMin) {
       }
     })
     .then((responseData) => {
-      console.log(responseData)
+      // Parsing response...
       let recipeCalArr = []
 
       for (let i = 0; i < responseData.hits.length; i++) {
@@ -158,7 +130,6 @@ function randomFoodItemGen(caloriesMax, caloriesMin) {
         recipeCalArr.push(recipeName, recipeLink, calories);
       }
 
-      console.log(recipeCalArr);
       let choices = []
       let x = 0
       for (let i = 0; i < recipeCalArr.length; i++) {
@@ -180,9 +151,8 @@ function randomFoodItemGen(caloriesMax, caloriesMin) {
       else plural = '.';
 
       let noRec = recipeCalArr[rand].replace('Recipe' || 'Recipes' || 'recipe' || 'recipes',"")
-      console.log(noRec)
-
-
+      
+      // Populates HTML with content
       $("#recipeAPIcard").addClass('active');
       $("#itemEat").text("Hello " + nameItem[0].value +"! In order to fill that void we suggest making " + numToConsume + " " + noRec.trim() + plural)
       $("#itemLink").attr('href', recipeCalArr[rand+1]);
@@ -204,6 +174,7 @@ saveButton.on('click', function() {
   } else {
       for(var i = 0; i< localStorage.length; i++);
   }
+
 });
 
 // These functions clear the pink background if there is an input error in the User Profile section.

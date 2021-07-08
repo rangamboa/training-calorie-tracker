@@ -236,22 +236,12 @@ enterButton.on('click', function(event) {
         htFtItem[0].style = 'background-color: pink;';
         okay = 0;
     }
-<<<<<<< HEAD
     if (htInItem[0].value < 0 || htInItem[0].value > 11) {
-=======
-
-  
-    if (htInItem[0].value < 0 || htInItem[0].value > 12) {
->>>>>>> develop
         alert('Please enter a valid height in inches.');
         htInItem[0].value = '';
         htInItem[0].style = 'background-color: pink;';
         okay = 0;    
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> develop
     if (weightItem[0].value <= 0) {
         alert('Please enter a valid weight in pounds.');
         weightItem[0].value = '';

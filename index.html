@@ -29,28 +29,42 @@
         <div id="userProfileDiv" class="uk-flex uk-flex-around">
                 <!-- User Profile (left) -->
             <div id="userProfile" class="uk-article uk-width-1-3@m">
-                <h2 class="uk-article-title">User Profile</h2>
-                <p>Please provide some demographic details so our workout planner can know you better!</p>
+                <h2 class="uk-article-title">1️⃣ User Profile</h2>
+                <p>Please provide some demographic details so our workout planner can know you better!<br>*required field</p>
                 <!--Add a text field for input-->
+
                 <div id="bodyInfo">
-                    <div id="nameAgebox">
+
+                    <div id="onameAgebox">
+
                         <textarea id="name" name="usersHeight" class="usersName" placeholder="Name"></textarea>
-                        <input id="age" type="number" name="usersHeight" class="usersAge" placeholder="Age"></input>
+                        <input id="age" type="number" name="usersHeight" class="usersAge statsButton" placeholder="Age*"></input>
+
                     </div>
+
                     <div id="heightWeightbox">
-                        <input type="number" name="usersHeight" class="usersHeight" placeholder="Your height"></input>
-                        <input type="number" name="usersWeight" class="usersWeight" placeholder="Your weight"></input>
-                    </div>                    
+
+                        Height   
+                        <div>
+                        <input type="number" name="usersHtft" class="usersHtft statsButton" placeholder="Feet*"></input>
+                        <input type="number" name="usersHtin" class="usersHtin statsButton" placeholder="Inches*"></input></div>
+
+                        Weight
+                        <div><input type="number" name="usersWeight" class="usersWeight statsButton" placeholder="Pounds*"></input></div>
+
+                    </div>                 
+
                 </div>
-                <p>If you would like to save this information please click the save button! else click enter to see results</p>
+                <p>Click "Save" to store your info, "Clear" to reset info,<br/> or "Enter" to confirm.</p>
                 
-                <button type="submit" id="enterBtn">Enter</button>
-                <button type="reset" id="restBtn">Clear</button>
                 <button type="submit" id="saveBtn">Save</button>
+                <button type="reset" id="resetBtn">Clear</button>
+                <button type="submit" id="enterBtn">Enter</button>
+
             </div>
                 <!-- User Input (right) -->
             <div id="userDetails" class="uk-card uk-card-hover uk-card-default uk-card-body uk-width-1-2@m uk-margin">
-                <h3 class="uk-card-title">Enter Your Workouts!</h3>
+                <h3 class="uk-card-title">2️⃣ Enter Your Workouts!</h3>
                 <form action="search">
                     <p>Please type in your exercise and the duration.<br />(You can enter multiple workouts.)</p>
                     <textarea name="workout-regiment" id="workoutInput" cols="65" rows="5"></textarea>
@@ -60,8 +74,8 @@
 
         </div>
             <!-- Workout Card from API -->
-        <div id="trainerAPIcard" class="uk-card uk-card-default uk-card-body uk-width-1-1@m uk-margin ">
-            <h3 class="uk-card-title">💪 Workout Results 💪</h3>
+        <div id="trainerAPIcard" class="uk-card uk-card-default uk-card-body uk-width-1-1@m uk-margin">
+            <h3 class="uk-card-title">3️⃣ Workout Results 💪</h3>
             <div class="result">
                 <div class="display:block;"  style="margin-right: 25px;" id="exerciseDisplay"></div>
                 <div class="display:block;" id="totalDisplay"></div>
@@ -88,6 +102,5 @@
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.0/dist/js/uikit.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.0/dist/js/uikit-icons.min.js"></script>
     <script src="js/exercise-search.js"></script>
-
 
 </html>

@@ -44,17 +44,17 @@ enterButton.on('click', function(event) {
         ageItem[0].value = '';
         ageItem[0].style = 'background-color: pink;';
     }
-    if ( htFtItem[0].value <= 0) {
+    if (htFtItem[0].value <= 0) {
         alert('Please enter a valid height in feet.');
         ageItem[0].value = '';
         ageItem[0].style = 'background-color: pink;';
     }
-    if ( htInItem[0].value <= 0) {
+    if (htInItem[0].value <= 0) {
         alert('Please enter a valid number.');
         ageItem[0].value = '';
         ageItem[0].style = 'background-color: pink;';
     }
-    if (weightItem[0].value <= 0 ||) {
+    if (weightItem[0].value <= 0) {
         alert('Please enter a valid number.');
         ageItem[0].value = '';
         ageItem[0].style = 'background-color: pink;';

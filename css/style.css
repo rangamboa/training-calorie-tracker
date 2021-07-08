@@ -39,10 +39,10 @@ nav {
 #userProfile h2 {
     border-bottom: 0.2rem solid var(--darker-secondary-color);
 }
+
 #bodyInfo{
     display: flex;
     flex-direction: column;
-    width: 100px;
     margin-top: 10px
 }
 
@@ -73,4 +73,31 @@ nav {
 .item {
     min-width: 200px;
     margin: 20px auto;
+}
+
+#name {
+    width: 85%;
+}
+
+#age {
+    width:15%;
+}
+
+
+#nameAgebox {
+    display:flex;
+    margin-left:8%;
+    width:75%;
+    margin-bottom: 1rem;
+}
+
+#heightWeightbox {
+    display:flex;
+    width:55%;
+    margin-left:15%;
+}
+
+#heightWeightbox input {
+    width:100%;
+    margin:auto;
 }

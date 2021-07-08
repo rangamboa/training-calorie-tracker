@@ -159,9 +159,10 @@ function randomFoodItemGen(caloriesMax, caloriesMin) {
         console.log(foodNameCalArr);
         // Add to this to change formating for how content is written to page (Will move into a span eventually) Add this line depending on whether it is defined ( + " from the brand " + foodNameCalArr[2] )
 
-        if (numToConsume > 1) plural = 's.';
+        if (numToConsume > 1)  plural = 's.'
         else plural = '.';
-
+        
+        $("#recipeAPIcard").removeAttr('hidden');
         $("#itemEat").text("To fill that void you're probably feeling after such a strenous workout you should eat... " + numToConsume +" " + foodNameCalArr[0] + plural);
         // Maybe want to add another fetch to do specific food item lookup from our new item of foodID
     })

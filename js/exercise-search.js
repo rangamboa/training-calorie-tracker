@@ -184,7 +184,7 @@ function randomFoodItemGen(caloriesMax, caloriesMin) {
 
 
       $("#recipeAPIcard").addClass('active');
-      $("#itemEat").text("In order to fill that void we suggest making " + numToConsume + " " + noRec.trim() + plural)
+      $("#itemEat").text("Hello " + nameItem[0].value +"! In order to fill that void we suggest making " + numToConsume + " " + noRec.trim() + plural)
       $("#itemLink").attr('href', recipeCalArr[rand+1]);
       $("#itemLink").attr('target', "_blank");
       $("#itemLink").text("Click here to go to the recipe page!");
@@ -206,10 +206,15 @@ saveButton.on('click', function() {
   }
 });
 
-// This function clears the pink background if there is an input error in the User Profile section.
+// These functions clear the pink background if there is an input error in the User Profile section.
 statsEl.on('click', function(event) {
     event.preventDefault();
     event.target.style = 'background-color: white';
+});
+
+nameItem.on('click', function(event) {
+  event.preventDefault();
+  event.target.style = 'background-color: white';
 });
 
 // This checks for valid input values in the user profile section, then converts to metric to be used by the API query.
@@ -217,11 +222,20 @@ enterButton.on('click', function(event) {
 
     okay = 1;
     event.preventDefault();
-    console.log('User Info should have been entered at this point.\nNeed to check for validity.');
+    console.log('Checking user info for validity.');
 
     console.log(genderItem[0].value);
 
     // Check for valid input values.
+
+    console.log(nameItem[0].value);
+
+    if (nameItem[0].value == '') {
+        alert('Please enter a name.');
+        nameItem[0].value = '';
+        nameItem[0].style = 'background-color: pink;';
+        okay = 0;
+    }
 
     if (ageItem[0].value <= 0) {
         alert('Please enter a valid number for age.');
@@ -257,26 +271,31 @@ enterButton.on('click', function(event) {
 
         // First, convert to height in inches.
         calcHeight = (parseInt(htFtItem[0].value)*12)+parseInt(htInItem[0].value);
-        console.log(calcHeight);
+        console.log(calcHeight + ' height in inches');
 
         // Then, convert to centimeters.
         calcHeight = Math.floor(calcHeight*2.54);
-        console.log(calcHeight);
+        console.log(calcHeight + ' height in centimeters');
 
         // Convert weight in pounds to kilograms to satisfy API query parameter requirement.
         calcWeight = Math.floor(parseInt(weightItem[0].value)/2.205);
-        console.log(calcWeight);
+        console.log(calcWeight + ' weight in kilograms');
 
         // Save user info  
-
+        // storeData();
 
 
     }
-    else { console.log('sometehing is off.'); return; }
+    else { console.log('A field in the user data is invalid.'); return; }
 });
+
 // Pulls new random recipe
 let newRecipeBtn = $("#newRecipe")
 newRecipeBtn.on('click', function() {
   $("#recipeAPIcard").removeClass('active');
   randomFoodItemGen(numCals, 0);
 })
+
+function storeData() {
+  
+}

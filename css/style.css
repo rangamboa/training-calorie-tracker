@@ -6,6 +6,7 @@
 --darker-tertiary-color: #46351D;
 }
 
+
 header {
     border-bottom: 0.5rem outset var(--lighter-secondary-color);
     color: var(--primary-color);
@@ -73,4 +74,38 @@ nav {
 .item {
     min-width: 200px;
     margin: 20px auto;
+}
+/* Adding background images*/
+
+.body{
+    width: 100%;
+    height: 100vh;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    backface-visibility: hidden;
+    animation: slideBg 30s linear infinite 0s;
+    animation-timing-function: ease-in-out;
+    background-image: url('../image/crossfit.PNG');
+    
+}
+
+@keyframes slideBg {
+    0%{
+        background-image: url('../image/calories.PNG');
+    }
+    25%{
+        background-image: url('../image/calories1.PNG');
+    }
+    50%{
+        background-image: url('../image/calories2.PNG');
+    }
+    75%{
+        background-image: url('../image/treadmil.PNG');
+    }
+    100%{
+        background-image: url('../image/Capture4.PNG');
+    }
+   
+    
 }

@@ -7,21 +7,12 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.7.0/dist/css/uikit.min.css" />
     <link rel="stylesheet" href="./css/style.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <title>Nutritional Assistant</title>
+    <title>Calorie Replacer</title>
 </head>
 <body>
         <!-- Header and Navbar div -->
     <header id="header" class="uk-flex uk-flex-between">
-        <h1 id="page-title" class="uk-heading-large">Nutritional Assistant</h1>
-        <nav class="uk-navbar uk-navbar-container uk-margin">
-            <div class="uk-navbar-right">
-                <ul class="uk-nav uk-nav-default">
-                    <li class="uk-active"><a href="">Workout</a></li>
-                    <li class="uk-active"><a href="">Recipe</a></li>
-                    <li class="uk-active"><a href="">Nutrition</a></li>
-                </ul>
-            </div>
-        </nav>
+        <h1 id="page-title" class="uk-heading-large">Calorie Replacer</h1>
     </header>
         <!-- Box for main content -->
     <div class="uk-flex uk-flex-column uk-flex-middle">
@@ -30,12 +21,12 @@
                 <!-- User Profile (left) -->
             <div id="userProfile" class="uk-article uk-width-1-3@m">
                 <h2 class="uk-article-title">1️⃣ User Profile</h2>
-                <p>Please provide some demographic details so our workout planner can know you better!<br>*required field</p>
+                    <p id="userProfileAfter">Please provide some demographic details so our workout planner can know you better!</p>
                 <!--Add a text field for input-->
 
                 <div id="bodyInfo">
 
-                    <div id="onameAgebox">
+                    <div id="nameAgebox">
 
                         <textarea id="name" name="usersHeight" class="usersName" placeholder="Name"></textarea>
                         <input id="age" type="number" name="usersHeight" class="usersAge statsButton" placeholder="Age*"></input>
@@ -44,23 +35,25 @@
 
                     <div id="heightWeightbox">
 
-                        Height   
-                        <div>
-                        <input type="number" name="usersHtft" class="usersHtft statsButton" placeholder="Feet*"></input>
+                        <label for="feet">Height</label>   
+                        <br>
+                        <div class= "uk-flex">
+                        <input id="feet" type="number" name="usersHtft" class="usersHtft statsButton" placeholder="Feet*"></input>
                         <input type="number" name="usersHtin" class="usersHtin statsButton" placeholder="Inches*"></input></div>
 
-                        Weight
-                        <div><input type="number" name="usersWeight" class="usersWeight statsButton" placeholder="Pounds*"></input></div>
+                        <label for="usersWeight">Weight</label>
+                        <input type="number" name="usersWeight" class="usersWeight statsButton" placeholder="Pounds*"></input>
 
                     </div>                 
 
                 </div>
                 <p>Click "Save" to store your info, "Clear" to reset info,<br/> or "Enter" to confirm.</p>
                 
+                <div id="btnBox" class="uk-flex uk-flex-around uk-width-1-2">
                 <button type="submit" id="saveBtn">Save</button>
                 <button type="reset" id="resetBtn">Clear</button>
                 <button type="submit" id="enterBtn">Enter</button>
-
+                </div>
             </div>
                 <!-- User Input (right) -->
             <div id="userDetails" class="uk-card uk-card-hover uk-card-default uk-card-body uk-width-1-2@m uk-margin">
@@ -68,7 +61,7 @@
                 <form action="search">
                     <p>Please type in your exercise and the duration.<br />(You can enter multiple workouts.)</p>
                     <textarea name="workout-regiment" id="workoutInput" cols="65" rows="5"></textarea>
-                    <input type="submit" style="float:right;" value="click to submit"></input>
+                    <input type="submit" style="float:right;" value="Click to Submit"></input>
                 </form>
             </div>
 

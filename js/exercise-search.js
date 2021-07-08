@@ -11,6 +11,7 @@ var statsEl = $('.statsButton');
 var okay = 1;
 var calcHeight;
 var calcWeight;
+var genderItem = $('#gender');
 
 var apiKey = "7d64f63f6bcf8a707e9c268f5f94f438";
 var apiId = "f11e9b5e";
@@ -46,17 +47,21 @@ function makeRequest(queryItem) {
 
   // This needs to be further modified with user information (height, weight, age)
 
-  if (gender == 'none' || gender == 'other') 
+  console.log(genderItem[0].value);
 
-  var gender = ":"female",
-  var weight_kg = ":72.5,
-  var height_cm = ":167.64,
-  var age = ":30
+  if (genderItem[0].value === 'none' || genderItem[0].value === 'other') {
+    gender = '';
+  } else gender = ((genderItem[0].value).toString()).toLowerCase();
+
+  console.log(gender);
+  console.log('age: '+ageItem[0].value);
+  console.log('height: '+calcHeight);
+  console.log('weight: '+calcWeight);
 
 
-  requestUrl = url + '&gender=female&age=35';
+  requestUrl = url + '&gender=' + gender + '&age=' + ageItem[0].value + '&height_cm=' + calcHeight + '&weight_kg=' + calcWeight;
   
-  // console.log(requestUrl);
+  console.log(requestUrl);
   // console.log(queryItem);
 
   fetch(requestUrl, {
@@ -219,7 +224,7 @@ enterButton.on('click', function(event) {
     event.preventDefault();
     console.log('User Info should have been entered at this point.\nNeed to check for validity.');
 
-    console.log(gender.value);
+    console.log(genderItem[0].value);
 
     // Check for valid input values.
 

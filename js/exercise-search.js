@@ -119,55 +119,47 @@ function randomFoodItemGen(caloriesMax, caloriesMin) {
         return response.json();
       }
     })
-    // Parse out relevant recipe data
     .then((responseData) => {
+      console.log(responseData)
+      let recipeCalArr = []
 
       for (let i = 0; i < responseData.hits.length; i++) {
-        recipeArr.push(responseData.hits[i].recipe);
+        let calories = responseData.hits[i].recipe.calories
+        let recipeName = responseData.hits[i].recipe.label
+        let recipeLink = responseData.hits[i].recipe.url
+        recipeCalArr.push(recipeName, recipeLink, calories);
       }
-      
-      for (let i = 0; i < recipeArr.length; i++) {
-        for (let x = 0; x < recipeArr[i].ingredients.length; x++) {
-          ingredientsObjArr.push(recipeArr[i].ingredients[x]);
+
+      console.log(recipeCalArr);
+      let choices = []
+      let x = 0
+      for (let i = 0; i < recipeCalArr.length; i++) {
+        choices.push(x);
+        x = (x+3);
+      }
+
+      for (let i = choices.length; i > 0; i--) {
+        if (choices[i] > recipeCalArr.length) {
+          choices.pop()
         }
       }
-      
-      for (let i = 0; i < ingredientsObjArr.length; i++) {
-        if (ingredientsObjArr[i].foodCategory !== null) {
-          foodCatArr.push(ingredientsObjArr[i].foodCategory);
-        }
-      }
-    // Generating random selection from ingredients within all recipes
-    let rand = foodCatArr[Math.floor(Math.random() * foodCatArr.length)];
-    // Fetching food items from above random ingredient
-    fetch(
-        "https://api.edamam.com/api/food-database/v2/parser?app_id=3cec3bc1&app_key=0f0adaf366c3696d4953db60eceb9f62&ingr=" + rand +"&calories=" + caloriesMin + "-" + caloriesMax
-    )
-    .then((response) => response.json())
-    .then((responseData) => {
-      // Gens random index, creates variables for our final array
-      let randIndex = Math.floor(Math.random() * responseData.hints.length);
-      let key = responseData.hints[randIndex].food.label;
-      let value = responseData.hints[randIndex].food.nutrients.ENERC_KCAL;
-      let brand = responseData.hints[randIndex].food.brand;
-      let foodId = responseData.hints[randIndex].food.foodId;
 
-      foodNameCalArr.push(key, value, brand, foodId);
+      let rand = choices[Math.floor(Math.random() * choices.length)];
+      let numToConsume = Math.floor(caloriesMax / Math.floor(recipeCalArr[rand+2]))
 
-        let numToConsume = Math.ceil(caloriesMax / foodNameCalArr[1]);
-        // Logging for readability, will show just name of food [0], number to eat [1], Brand (if defined)[2] and the food id[3]
-        console.log(foodNameCalArr);
-        // Add to this to change formating for how content is written to page (Will move into a span eventually) Add this line depending on whether it is defined ( + " from the brand " + foodNameCalArr[2] )
+      console.log(rand)
+      console.log(recipeCalArr[rand]);
+      console.log(recipeCalArr[rand+1]);
+      console.log(recipeCalArr[rand+2]);
 
-        if (numToConsume > 1)  plural = 's.'
-        else plural = '.';
-        
-        $("#recipeAPIcard").removeAttr('hidden');
-        $("#itemEat").text("To fill that void you're probably feeling after such a strenous workout you should eat... " + numToConsume +" " + foodNameCalArr[0] + plural);
-        // Maybe want to add another fetch to do specific food item lookup from our new item of foodID
-    })
+      let plural
+      if (numToConsume > 1)  plural = 's.'
+      else plural = '.';
+
+      $("#recipeAPIcard").removeAttr('hidden');
+      $("#itemEat").text("In order to fill that void we suggest making " + numToConsume + " " + recipeCalArr[rand] + plural)
+      $("#itemLink").attr('href', recipeCalArr[rand+1]);
+      $("#itemLink").attr('target', "_blank");
+      $("#itemLink").text("Click here to go to the recipe page!");
   })
 }
-
-// randomFoodItemGen(1000, 0);
-

@@ -29,6 +29,7 @@ var totalDisp = $('#totalDisplay');
 form.on('submit', function(event) {
 
   event.preventDefault();
+  $("#recipeAPIcard").removeClass('active');
 
   // Assign value to queryItem to use in API.
   queryItem = input.val();
@@ -161,7 +162,7 @@ function randomFoodItemGen(caloriesMax, caloriesMin) {
       let numToConsume = Math.floor(caloriesMax / Math.floor(recipeCalArr[rand+2]))
 
       console.log(rand)
-      console.log(recipeCalArr[rand]);
+      console.log(recipeCalArr[rand].split('Recipe'));
       console.log(recipeCalArr[rand+1]);
       console.log(recipeCalArr[rand+2]);
 
@@ -169,8 +170,12 @@ function randomFoodItemGen(caloriesMax, caloriesMin) {
       if (numToConsume > 1)  plural = 's.'
       else plural = '.';
 
-      $("#recipeAPIcard").removeAttr('hidden');
-      $("#itemEat").text("In order to fill that void we suggest making " + numToConsume + " " + recipeCalArr[rand] + plural)
+      let noRec = recipeCalArr[rand].replace('Recipe' || 'Recipes',"")
+      console.log(noRec)
+
+
+      $("#recipeAPIcard").addClass('active');
+      $("#itemEat").text("In order to fill that void we suggest making " + numToConsume + " " + noRec.trim() + plural)
       $("#itemLink").attr('href', recipeCalArr[rand+1]);
       $("#itemLink").attr('target', "_blank");
       $("#itemLink").text("Click here to go to the recipe page!");

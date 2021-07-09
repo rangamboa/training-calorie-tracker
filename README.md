@@ -4,6 +4,8 @@
 
 We initially conceived of an app that would receive user input to provide recipes and nutritional information to supplement their workout. After the initial Manatee Tank meeting with instructors and getting feedback on the originality of the app, we pivoted slightly and modified our goal to be more lighthearted. **Calorie Replacer** will take simple information from the user in the form of height, weight, age, gender and exercise regimen and return a random link to a recipe which should provide an equal number of calories to what was lost during the exercise. Many exercise apps are solely focused on the tracking and burning of calories; Calorie Replacer fully acknowledges that and will further suggest a variety of ways to get those calories back in a hurry.
 
+Calorie Replacer is made with HTML, the UIkit CSS library, and jQuery.
+
 ## User Flow
 
 Calorie Replacer has a four-part flow.
@@ -18,10 +20,29 @@ Calorie Replacer has a four-part flow.
 
 ## Issues
 
-1. **API Requests** - We initially had some trouble with our first request to the Nutritionix API as it involved a POST method instead of GET, in addition to requiring headers, but quickly resolved this with assistance from instructors. Otherwise, integration of the results of the first API call with the request URL for the second went smoothly; scripting for each call was coded by separate devs.
+- **API Requests** - We initially had some trouble with our first request to the Nutritionix API as it involved a POST method instead of GET, in addition to requiring headers, but quickly resolved this with assistance from instructors. Otherwise, integration of the results of the first API call with the request URL for the second went smoothly; scripting for each call was coded by separate devs.
 
-2. **Recipe Results Not Showing** - Intermittently, Section 4 will not trigger. We have not been able to debug this issue. 
+- **Recipe Results not Showing** - Intermittently, Section 4 will not trigger. We have not been able to debug this issue. 
 
-3. **String Manipulation** - We attempted to display the final results correctly with regard to plural terms and in/exclusion of the word "recipe". We wrote string manipulation functions to mitigate these display issues but haven't been completely successful (some results display "artichokess" or similar).
+- **String Manipulation** - We attempted to display the final results correctly with regard to plural terms and in/exclusion of the word "recipe". We wrote string manipulation functions to mitigate these display issues but haven't been completely successful (some results display "artichokess" or similar).
 
-4. **Dead Links** - External links to some recipes are dead or outdated, but this is out of our scope.
+- **Dead Links** - External links to some recipes are dead or outdated, but this is out of our scope.
+
+## Resources
+
+- [Nutritionix API](https://docs.google.com/document/d/1_q-K-ObMTZvO0qUEAxROrN3bwMujwAN25sLHwJzliK0/edit)
+
+- [Edamam Recipe API](https://developer.edamam.com/edamam-docs-recipe-api)
+
+- [UIkit](https://getuikit.com/)
+
+- [jQuery](https://jquery.com/)
+
+- [W3Schools](https://www.w3schools.com/)
+
+- [MDN Web Docs](https://developer.mozilla.org/en-US/)
+
+## Screenshots
+
+add screenshots here.
+

@@ -30,6 +30,15 @@ var input = $('#workoutInput');
 var workoutDisp = $('#exerciseDisplay');
 var totalDisp = $('#totalDisplay');
 
+// API Call counter
+let apiCallNum = 0;
+const dateNow = new Date();
+
+let x = dateNow.getMinutes();
+if (dateNow.getMinutes())
+
+
+
 function myFunction() {
   document.getElementById("myForm").reset();
 }
@@ -153,8 +162,6 @@ function randomFoodItemGen(caloriesMax, caloriesMin) {
       for (let i = 0; i < recipeCalArr.length; i++) {
         choices.push(x);
         x = (x+3);
-        // Jeff 's test
-        console.log(x);
       }
 
       for (let i = choices.length; i > 0; i--) {
@@ -171,27 +178,29 @@ function randomFoodItemGen(caloriesMax, caloriesMin) {
       else plural = '.';
 
       var noRecipe = recipeCalArr[rand]
-      var lastIndex 
-      var newStr
-      // Checks if the last word of our string is any mutations of Recipe then removes if so
-      if (noRecipe.substring(noRecipe.lastIndexOf(" "), (noRecipe.length + 1)) === ' recipe' || noRecipe.substring(noRecipe.lastIndexOf(" "), (noRecipe.length + 1)) === ' Recipe' || noRecipe.substring(noRecipe.lastIndexOf(" "), (noRecipe.length + 1)) === ' recipes' || noRecipe.substring(noRecipe.lastIndexOf(" "), (noRecipe.length + 1)) === ' Recipes') {
-      lastIndex = noRecipe.lastIndexOf(" ")
-      newStr = noRecipe.substring(0, lastIndex);
-      } else {
-      newStr = recipeCalArr[rand]
-      };
-    
+
+      if (noRecipe == undefined) {
+        rand = choices[Math.floor(Math.random() * choices.length)];
+      }
+      console.log(noRecipe);
+      
       // If last character of string is s, force plural to be .
-      if (newStr[newStr.length] === 's') {
+      if (noRecipe[(noRecipe.length - 1)] === 's') {
       plural = '.';
       }
       
       // Populates HTML with content
       $("#recipeAPIcard").addClass('active');
-      $("#itemEat").text("Hello " + nameItem[0].value +"! In order to fill that " + numCals +"-calorie void, we suggest making " + numToConsume + " " + newStr + plural)
+      $("#itemEat").text("Hello " + nameItem[0].value +"! In order to fill that " + numCals +"-calorie void, we suggest making " + numToConsume + " " + noRecipe + plural)
       $("#itemLink").attr('href', recipeCalArr[rand+1]);
       $("#itemLink").attr('target', "_blank");
       $("#itemLink").text("Click here to go to the recipe page!");
+      
+  }).catch(rejection =>  {
+    UIkit.modal.alert('Our recipe search engine only allows 10 searches per minutes, sorry for the inconvenience!')
+    $('html').on('click', function(event){
+      location = location;
+    })
   })
 }
 

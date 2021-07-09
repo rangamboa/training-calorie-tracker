@@ -183,3 +183,11 @@ header {
 .addMarginTop {
     margin-top: 2rem;
 }
+
+.addMarginTopLarge {
+    margin-top: 5rem;
+}
+
+#foot {
+    border-top: 0.6rem outset var(--lighter-secondary-color);
+}

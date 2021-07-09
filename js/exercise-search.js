@@ -34,11 +34,19 @@ function myFunction() {
   document.getElementById("myForm").reset();
 }
 
+// Check user storage for user save...
+if (localStorage.getItem('saveName') !== undefined) {
+
+  userSavedProfile();
+
+}
+
 // Capture workout information from form
 form.on('submit', function(event) {
 
   event.preventDefault();
   $("#recipeAPIcard").removeClass('active');
+  $("#trainerAPIcard").removeClass('noneDis');
 
   // Assign value to queryItem to use in API.
   queryItem = input.val();
@@ -49,6 +57,11 @@ form.on('submit', function(event) {
   // Clear value of input box.
   input.val('');
   $("#trainerAPIcard").addClass('active');
+  $("#trainerAPIcard").addClass('addMarginRight');
+  $("#trainerAPIcard").addClass('addMarginLeft');
+  $("#userDetails").addClass('addMarginRight');
+  $("#userDetails").addClass('addMarginLeft');
+  $("#recipeAPIcard").addClass('addMarginTop');
 });
 
 // Sends workout query to API
@@ -159,11 +172,24 @@ function randomFoodItemGen(caloriesMax, caloriesMin) {
       if (numToConsume > 1)  plural = 's.'
       else plural = '.';
 
-      let noRec = recipeCalArr[rand].replace('Recipe' || 'Recipes' || 'recipe' || 'recipes',"")
-      
+      var noRecipe = recipeCalArr[rand]
+      var lastIndex 
+      var newStr
+      // Checks if the last word of our string is any mutations of Recipe then removes if so
+      if (noRecipe.substring(noRecipe.lastIndexOf(" "), (noRecipe.length + 1)) === ' recipe' || noRecipe.substring(noRecipe.lastIndexOf(" "), (noRecipe.length + 1)) === ' Recipe' || noRecipe.substring(noRecipe.lastIndexOf(" "), (noRecipe.length + 1)) === ' recipes' || noRecipe.substring(noRecipe.lastIndexOf(" "), (noRecipe.length + 1)) === ' Recipes') {
+      lastIndex = noRecipe.lastIndexOf(" ")
+      newStr = noRecipe.substring(0, lastIndex);
+      } else {
+      newStr = recipeCalArr[rand]
+      };
+    
+      // If last character of string is s, force plural to be .
+      if (newStr[newStr.length] === 's') {
+      plural = '.';
+      }
       // Populates HTML with content
       $("#recipeAPIcard").addClass('active');
-      $("#itemEat").text("Hello " + nameItem[0].value +"! In order to fill that " + numCals +"-calorie void, we suggest making " + numToConsume + " " + noRec.trim() + plural)
+      $("#itemEat").text("Hello " + nameItem[0].value +"! In order to fill that " + numCals +"-calorie void, we suggest making " + numToConsume + " " + newStr + plural)
       $("#itemLink").attr('href', recipeCalArr[rand+1]);
       $("#itemLink").attr('target', "_blank");
       $("#itemLink").text("Click here to go to the recipe page!");
@@ -232,7 +258,13 @@ enterButton.on('click', function(event) {
 
         console.log('looks good, converting stats to metric.');
         // Convert height in feet/inches to centimeters to satisfy API query parameter requirement.
-
+        // ANIMATION FLAG
+        $("#userDetails").removeClass('noneDis');
+        $("#page2Div").removeClass('noneDis');
+        $("#recipeAPIcard").removeClass('noneDis');
+        $("#userProfile").addClass('noneDis');
+        $("#userDetails").addClass('active');
+        
         // First, convert to height in inches.
         calcHeight = (parseInt(htFtItem[0].value)*12)+parseInt(htInItem[0].value);
         console.log(calcHeight + ' height in inches');
@@ -271,9 +303,8 @@ saveButton.on('click', function(event) {
 });
 
 // Retrieve user info to local storage on button click.
-retrieveButton.on('click', function(event) {
 
-  event.preventDefault();
+function userSavedProfile() {
 
   nameItem[0].value = JSON.parse(localStorage.getItem('saveName'));
   ageItem[0].value = JSON.parse(localStorage.getItem('saveAge'));
@@ -289,4 +320,18 @@ retrieveButton.on('click', function(event) {
   htInItem[0].style = 'background-color:white';
   weightItem[0].style = 'background-color:white';
 
+}
+
+retrieveButton.on('click', function(event) {
+
+  event.preventDefault();
+  userSavedProfile();
+  
 });
+
+// Force refresh to display user profile again
+let startOverBtn = $("#startOver")
+startOverBtn.on('click', function (event) {
+  event.preventDefault();
+  location = location;
+})

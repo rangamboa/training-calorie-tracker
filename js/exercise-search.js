@@ -119,11 +119,7 @@ function makeRequest(queryItem) {
 function randomFoodItemGen(caloriesMax, caloriesMin) {
   // Decaling placeholder arrays for later parsing
     let recipesMax = 20;
-    let recipeArr = [];
-    let ingredientsObjArr = [];
-    let foodCatArr = [];
-    let foodNameCalArr = [];
-    let plural;
+ 
     // First fetch for recipes, 20 total
     fetch(
     "https://api.edamam.com/api/recipes/v2?app_id=c0e0f66e&app_key=cf84cbb0849e2b329dc49ca9dc674ee2&type=public&from=0&to=" +
@@ -157,6 +153,8 @@ function randomFoodItemGen(caloriesMax, caloriesMin) {
       for (let i = 0; i < recipeCalArr.length; i++) {
         choices.push(x);
         x = (x+3);
+        // Jeff 's test
+        console.log(x);
       }
 
       for (let i = choices.length; i > 0; i--) {

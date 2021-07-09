@@ -8,6 +8,7 @@ var weightItem = $('.usersWeight');
 var saveButton = $('#saveBtn');
 var retrieveButton = $('#retrieveBtn');
 var enterButton = $('#enterBtn');
+var resetButton = $('#resetBtn');
 var statsEl = $('.statsButton');
 var okay = 1;
 var calcHeight;
@@ -28,6 +29,10 @@ var form = $('form');
 var input = $('#workoutInput');
 var workoutDisp = $('#exerciseDisplay');
 var totalDisp = $('#totalDisplay');
+
+function myFunction() {
+  document.getElementById("myForm").reset();
+}
 
 // Capture workout information from form
 form.on('submit', function(event) {
@@ -158,7 +163,7 @@ function randomFoodItemGen(caloriesMax, caloriesMin) {
       
       // Populates HTML with content
       $("#recipeAPIcard").addClass('active');
-      $("#itemEat").text("Hello " + nameItem[0].value +"! In order to fill that void we suggest making " + numToConsume + " " + noRec.trim() + plural)
+      $("#itemEat").text("Hello " + nameItem[0].value +"! In order to fill that " + numCals +"-calorie void, we suggest making " + numToConsume + " " + noRec.trim() + plural)
       $("#itemLink").attr('href', recipeCalArr[rand+1]);
       $("#itemLink").attr('target', "_blank");
       $("#itemLink").text("Click here to go to the recipe page!");
@@ -190,33 +195,33 @@ enterButton.on('click', function(event) {
     console.log(nameItem[0].value);
 
     if (nameItem[0].value == '') {
-        alert('Please enter a name.');
+        // alert('Please enter a name.');
         nameItem[0].value = '';
         nameItem[0].style = 'background-color: pink;';
         okay = 0;
     }
 
     if (ageItem[0].value <= 0) {
-        alert('Please enter a valid number for age.');
+        // alert('Please enter a valid number for age.');
         ageItem[0].value = '';
         ageItem[0].style = 'background-color: pink;';
         okay = 0;
     }
 
     if (htFtItem[0].value <= 0) {
-        alert('Please enter a valid height in feet.');
+        // alert('Please enter a valid height in feet.');
         htFtItem[0].value = '';
         htFtItem[0].style = 'background-color: pink;';
         okay = 0;
     }
     if (htInItem[0].value < 0 || htInItem[0].value > 11) {
-        alert('Please enter a valid height in inches.');
+        // alert('Please enter a valid height in inches.');
         htInItem[0].value = '';
         htInItem[0].style = 'background-color: pink;';
         okay = 0;    
     }
     if (weightItem[0].value <= 0) {
-        alert('Please enter a valid weight in pounds.');
+        // alert('Please enter a valid weight in pounds.');
         weightItem[0].value = '';
         weightItem[0].style = 'background-color: pink;';
         okay = 0;
@@ -239,8 +244,10 @@ enterButton.on('click', function(event) {
         // Convert weight in pounds to kilograms to satisfy API query parameter requirement.
         calcWeight = Math.floor(parseInt(weightItem[0].value)/2.205);
         console.log(calcWeight + ' weight in kilograms');
-   }
-    else { console.log('A field in the user data is invalid.'); return; }
+   } else {
+        UIkit.modal.alert('Please enter valid information in the highlighted fields. Thanks!');
+        return;
+      }
 });
 
 // Pulls new random recipe
@@ -250,7 +257,7 @@ newRecipeBtn.on('click', function() {
   randomFoodItemGen(numCals, 0);
 })
 
-// Saves user info to local storage on button click.
+// Save user info to local storage on button click.
 saveButton.on('click', function(event) {
 
   event.preventDefault();
@@ -263,7 +270,7 @@ saveButton.on('click', function(event) {
 
 });
 
-
+// Retrieve user info to local storage on button click.
 retrieveButton.on('click', function(event) {
 
   event.preventDefault();
@@ -275,12 +282,11 @@ retrieveButton.on('click', function(event) {
   htInItem[0].value = JSON.parse(localStorage.getItem('saveIn'));
   weightItem[0].value = JSON.parse(localStorage.getItem('saveWt'));
 
+  nameItem[0].style = 'background-color:white';
+  ageItem[0].style = 'background-color:white';
+  genderItem[0].style = 'background-color:white';
+  htFtItem[0].style = 'background-color:white';
+  htInItem[0].style = 'background-color:white';
+  weightItem[0].style = 'background-color:white';
+
 });
-
-
-// if(user < 1 ){
-//     console.log("No users found");
-// } else {
-//     for(var i = 0; i< localStorage.length; i++);
-// }
-

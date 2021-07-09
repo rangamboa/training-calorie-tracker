@@ -25,21 +25,21 @@
                 <!--Add a text field for input-->
 
                 <div id="bodyInfo">
-
+                <form>
                     <div id="nameAgebox">
                         <label for="usersHeight">Name and Age:</label>
                         <div id="nameDiv" class="uk-flex">
-                        <textarea id="name" name="usersName" class="usersName" placeholder="Name*" rows="1"></textarea>
-                        <input id="age" type="number" name="usersAge" class="usersAge statsButton" placeholder="Age*"></input>
+                            <textarea id="name" name="usersName" class="usersName" placeholder="Name*" rows="1"></textarea>
+                            <input id="age" type="number" name="usersAge" class="usersAge statsButton" placeholder="Age*"></input>
                         </div>
                         <div id="genderBox">
-                        <label for="gender">Gender:</label>
-                        <select id="gender" name="gender">
-                            <option value="none"></option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                            <option value="other">Other</option>
-                        </select>
+                            <label for="gender">Gender:</label>
+                            <select id="gender" name="gender">
+                                <option value="none"></option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
                         </div>
                     </div>
 
@@ -54,15 +54,17 @@
                             <input type="number" name="usersWeight" class="usersWeight statsButton" placeholder="Pounds*"></input>
                         </div>
                     </div>                 
-
-                </div>
-                <p>Click "Save Profile" to store your info, "Load Profile" to retrieve your info from the browser, "Clear Form" to reset the form, or "Use Profile" to use it for calorie calculation.</p>
                 
-                <div id="btnBox" class="uk-flex uk-flex-around uk-width-1-2">
-                <button type="submit" id="saveBtn">Save Profile</button>
-                <button type="submit" id="retrieveBtn">Load Profile</button>
-                <button type="reset" id="resetBtn">Clear Form</button>
-                <button type="submit" id="enterBtn">Use Profile</button>
+                
+                    <p>Click "Save Profile" to store your info into the browser, "Load Profile" to retrieve your info, "Reset" to clear the form, or "Use Profile" to proceed with the next step.</p>
+                
+                    <div id="btnBox" class="uk-flex uk-flex-around uk-width-1-2">
+                        <button type="submit" id="saveBtn">Save Profile</button>&nbsp;
+                        <button type="submit" id="retrieveBtn">Load Profile</button>&nbsp;
+                        <input type="reset" id="resetBtn"></input>&nbsp;
+                        <button type="submit" id="enterBtn">Use Profile</button>
+                    </div>
+                </form>
                 </div>
             </div>
                 <!-- User Input (right) -->
@@ -96,6 +98,10 @@
                 </div>
         </div>
     </div>
+    </div>
+
+    <!-- modal activated if there is an error in user profile -->
+
     <footer>
         <!-- Credit ourselves, maybe API links -->
     </footer>

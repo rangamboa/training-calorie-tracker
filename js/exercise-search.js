@@ -187,6 +187,7 @@ function randomFoodItemGen(caloriesMax, caloriesMin) {
       if (newStr[newStr.length] === 's') {
       plural = '.';
       }
+      
       // Populates HTML with content
       $("#recipeAPIcard").addClass('active');
       $("#itemEat").text("Hello " + nameItem[0].value +"! In order to fill that " + numCals +"-calorie void, we suggest making " + numToConsume + " " + newStr + plural)

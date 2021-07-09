@@ -18,8 +18,10 @@ Calorie Replacer has a four-part flow.
 
 ## Issues
 
-1. **API Requests** - We initially had some trouble with our first request to the Nutritionix API as it involved a POST method instead of GET, in addition to requiring headers, but quickly resolved this with assistance from instructors. 
+1. **API Requests** - We initially had some trouble with our first request to the Nutritionix API as it involved a POST method instead of GET, in addition to requiring headers, but quickly resolved this with assistance from instructors. Otherwise, integration of the results of the first API call with the request URL for the second went smoothly; scripting for each call was coded by separate devs.
 
-2. string manipulation for plurality
+2. **Recipe Results Not Showing** - Intermittently, Section 4 will not trigger. We have not been able to debug this issue. 
 
-3. dead recipe links
+3. **String Manipulation** - We attempted to display the final results correctly with regard to plural terms and in/exclusion of the word "recipe". We wrote string manipulation functions to mitigate these display issues but haven't been completely successful (some results display "artichokess" or similar).
+
+4. **Dead Links** - External links to some recipes are dead or outdated, but this is out of our scope.

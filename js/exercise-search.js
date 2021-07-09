@@ -6,13 +6,16 @@ var htFtItem = $('.usersHtft');
 var htInItem = $('.usersHtin');
 var weightItem = $('.usersWeight');
 var saveButton = $('#saveBtn');
+var retrieveButton = $('#retrieveBtn');
 var enterButton = $('#enterBtn');
+var resetButton = $('#resetBtn');
 var statsEl = $('.statsButton');
 var okay = 1;
 var calcHeight;
 var calcWeight;
 var genderItem = $('#gender');
-  // API Variables
+
+// API Variables
 var apiKey = "7d64f63f6bcf8a707e9c268f5f94f438";
 var apiId = "f11e9b5e";
 var url = 'https://trackapi.nutritionix.com/v2/natural/exercise?query=';
@@ -20,11 +23,16 @@ var queryItem;
 var workouts = [];
 var numWorkouts = 0;
 var numCals = 0;
+
   // Input Variables
 var form = $('form');
 var input = $('#workoutInput');
 var workoutDisp = $('#exerciseDisplay');
 var totalDisp = $('#totalDisplay');
+
+function myFunction() {
+  document.getElementById("myForm").reset();
+}
 
 // Capture workout information from form
 form.on('submit', function(event) {
@@ -87,7 +95,8 @@ function makeRequest(queryItem) {
       totalDisp.append('🔥 Total Calories Burned: '+ numCals);
   }
   // Keep track of numCals (total calories burned).
-  console.log(numCals);
+  console.log('Total calories burned: '+ numCals);
+
   // Pass numCals to another function WITHIN this fetch request.
   randomFoodItemGen(numCals, 0);
   });
@@ -154,70 +163,65 @@ function randomFoodItemGen(caloriesMax, caloriesMin) {
       
       // Populates HTML with content
       $("#recipeAPIcard").addClass('active');
-      $("#itemEat").text("In order to fill that void we suggest making " + numToConsume + " " + noRec.trim() + plural)
+      $("#itemEat").text("Hello " + nameItem[0].value +"! In order to fill that " + numCals +"-calorie void, we suggest making " + numToConsume + " " + noRec.trim() + plural)
       $("#itemLink").attr('href', recipeCalArr[rand+1]);
       $("#itemLink").attr('target', "_blank");
       $("#itemLink").text("Click here to go to the recipe page!");
   })
 }
 
-function createUser() {
-    const user = localStorage.setItem(nameItem, ageItem, heightItem, weightItem);
-}
-
-saveButton.on('click', function() {
-
-  document.getElementsByName(user).values();
-
-  if(user < 1 ){
-      console.log("No users found");
-  } else {
-      for(var i = 0; i< localStorage.length; i++);
-  }
-
-});
-
-// Clears the pink background if there is an input error in the User Profile section
+// These functions clear the pink background if there is an input error in the User Profile section.
 statsEl.on('click', function(event) {
     event.preventDefault();
     event.target.style = 'background-color: white';
 });
 
-// Checks for valid input values in the user profile section, then converts to metric to be used by the API query
+nameItem.on('click', function(event) {
+  event.preventDefault();
+  event.target.style = 'background-color: white';
+});
+
+// This checks for valid input values in the user profile section, then converts to metric to be used by the API query.
 enterButton.on('click', function(event) {
 
     okay = 1;
     event.preventDefault();
-    console.log('User Info should have been entered at this point.\nNeed to check for validity.');
+    console.log('Checking user info for validity.');
 
     console.log(genderItem[0].value);
 
     // Check for valid input values.
 
+    console.log(nameItem[0].value);
+
+    if (nameItem[0].value == '') {
+        // alert('Please enter a name.');
+        nameItem[0].value = '';
+        nameItem[0].style = 'background-color: pink;';
+        okay = 0;
+    }
+
     if (ageItem[0].value <= 0) {
-        alert('Please enter a valid number for age.');
+        // alert('Please enter a valid number for age.');
         ageItem[0].value = '';
         ageItem[0].style = 'background-color: pink;';
         okay = 0;
     }
 
     if (htFtItem[0].value <= 0) {
-        alert('Please enter a valid height in feet.');
+        // alert('Please enter a valid height in feet.');
         htFtItem[0].value = '';
         htFtItem[0].style = 'background-color: pink;';
         okay = 0;
     }
-
-  
-    if (htInItem[0].value < 0 || htInItem[0].value > 12) {
-        alert('Please enter a valid height in inches.');
+    if (htInItem[0].value < 0 || htInItem[0].value > 11) {
+        // alert('Please enter a valid height in inches.');
         htInItem[0].value = '';
         htInItem[0].style = 'background-color: pink;';
         okay = 0;    
     }
-
     if (weightItem[0].value <= 0) {
-        alert('Please enter a valid weight in pounds.');
+        // alert('Please enter a valid weight in pounds.');
         weightItem[0].value = '';
         weightItem[0].style = 'background-color: pink;';
         okay = 0;
@@ -231,20 +235,19 @@ enterButton.on('click', function(event) {
 
         // First, convert to height in inches.
         calcHeight = (parseInt(htFtItem[0].value)*12)+parseInt(htInItem[0].value);
-        console.log(calcHeight);
+        console.log(calcHeight + ' height in inches');
 
         // Then, convert to centimeters.
         calcHeight = Math.floor(calcHeight*2.54);
-        console.log(calcHeight);
+        console.log(calcHeight + ' height in centimeters');
 
         // Convert weight in pounds to kilograms to satisfy API query parameter requirement.
         calcWeight = Math.floor(parseInt(weightItem[0].value)/2.205);
-        console.log(calcWeight);
-
-
-
-    }
-    else { console.log('sometehing is off.'); return; }
+        console.log(calcWeight + ' weight in kilograms');
+   } else {
+        UIkit.modal.alert('Please enter valid information in the highlighted fields. Thanks!');
+        return;
+      }
 });
 
 // Pulls new random recipe
@@ -253,3 +256,37 @@ newRecipeBtn.on('click', function() {
   $("#recipeAPIcard").removeClass('active');
   randomFoodItemGen(numCals, 0);
 })
+
+// Save user info to local storage on button click.
+saveButton.on('click', function(event) {
+
+  event.preventDefault();
+  localStorage.setItem('saveName', JSON.stringify(nameItem[0].value));
+  localStorage.setItem('saveAge', JSON.stringify(ageItem[0].value));
+  localStorage.setItem('saveGen', JSON.stringify(genderItem[0].value));
+  localStorage.setItem('saveFt', JSON.stringify(htFtItem[0].value));
+  localStorage.setItem('saveIn', JSON.stringify(htInItem[0].value));
+  localStorage.setItem('saveWt', JSON.stringify(weightItem[0].value));
+
+});
+
+// Retrieve user info to local storage on button click.
+retrieveButton.on('click', function(event) {
+
+  event.preventDefault();
+
+  nameItem[0].value = JSON.parse(localStorage.getItem('saveName'));
+  ageItem[0].value = JSON.parse(localStorage.getItem('saveAge'));
+  genderItem[0].value = JSON.parse(localStorage.getItem('saveGen'));
+  htFtItem[0].value = JSON.parse(localStorage.getItem('saveFt'));
+  htInItem[0].value = JSON.parse(localStorage.getItem('saveIn'));
+  weightItem[0].value = JSON.parse(localStorage.getItem('saveWt'));
+
+  nameItem[0].style = 'background-color:white';
+  ageItem[0].style = 'background-color:white';
+  genderItem[0].style = 'background-color:white';
+  htFtItem[0].style = 'background-color:white';
+  htInItem[0].style = 'background-color:white';
+  weightItem[0].style = 'background-color:white';
+
+});

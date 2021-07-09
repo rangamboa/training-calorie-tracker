@@ -26,7 +26,7 @@ Calorie Replacer has a four-part flow.
 
 - **String Manipulation** - We attempted to display the final results correctly with regard to plural terms and in/exclusion of the word "recipe". We wrote string manipulation functions to mitigate these display issues but haven't been completely successful (some results display "artichokess" or similar).
 
-- **Dead Links** - External links to some recipes are dead or outdated, but this is out of our scope.
+- **Dead Links** - External links to some recipes are dead or outdated, but checking for those and excluding them from the random search results is out of the scope of this app.
 
 ## Resources
 
@@ -44,5 +44,15 @@ Calorie Replacer has a four-part flow.
 
 ## Screenshots
 
-add screenshots here.
+user profile section
+![User Profile](./images/calorie-replacer-01.jpg)
+
+modal for incomplete/invalid user input
+![Modal](./images/calorie-replacer-02.jpg)
+
+workout input section
+![Enter Your Workouts](./images/calorie-replacer-03.jpg)
+
+workout and recipe results
+![Workout and Recipe Results](./images/calorie-replacer-04.jpg)
 

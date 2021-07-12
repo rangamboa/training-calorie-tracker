@@ -173,6 +173,10 @@ function randomFoodItemGen(caloriesMax, caloriesMin) {
       let rand = choices[Math.floor(Math.random() * choices.length)];
       let numToConsume = Math.floor(caloriesMax / Math.floor(recipeCalArr[rand+2]))
 
+      if (numToConsume == Infinity) {
+        numToConsume = 'a whoooooooole lot of'
+      }
+
       let plural
       if (numToConsume > 1)  plural = 's.'
       else plural = '.';
@@ -182,6 +186,7 @@ function randomFoodItemGen(caloriesMax, caloriesMin) {
       if (noRecipe == undefined) {
         rand = choices[Math.floor(Math.random() * choices.length)];
       }
+
       console.log(noRecipe);
       
       // If last character of string is s, force plural to be .

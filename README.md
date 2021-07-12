@@ -42,6 +42,10 @@ Calorie Replacer has a four-part flow.
 
 - [MDN Web Docs](https://developer.mozilla.org/en-US/)
 
+## Link to Deployed GitHub Page
+
+- [Calorie Replacer](https://rangamboa.github.io/training-calorie-tracker/)
+
 ## Screenshots
 
 user profile section
